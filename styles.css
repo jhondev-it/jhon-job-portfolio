@@ -334,3 +334,315 @@ body.dark-mode .profile-avatar { border-color:#263a53; }
 body.dark-mode .nice-list li { border-color:#2b3a4e; }
 body.dark-mode .quote-panel { background:#263a53; }
 @media (max-width:850px) { .theme-toggle { align-self:flex-start; margin-top:8px; } }
+/* Clickable gallery images */
+.gallery-item img {
+    cursor: pointer;
+    transition: transform 0.4s ease, filter 0.4s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+    filter: brightness(0.85);
+}
+
+/* Lightbox animation */
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: rgba(5, 10, 25, 0.95);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.image-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 12px;
+    transform: scale(0.75);
+    transition: transform 0.4s ease;
+}
+
+.image-lightbox.active img {
+    transform: scale(1);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    background: transparent;
+    border: none;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+.lightbox-close:hover {
+    color: #00aaff;
+    transform: rotate(90deg);
+}
+
+body.lightbox-open {
+    overflow: hidden;
+}
+/* Previous and Next Buttons */
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 150, 255, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    z-index: 10001;
+}
+
+.lightbox-nav:hover {
+    background: #009dff;
+    transform: translateY(-50%) scale(1.15);
+}
+
+.lightbox-nav.prev {
+    left: 25px;
+}
+
+.lightbox-nav.next {
+    right: 25px;
+}
+
+/* Image Counter */
+.lightbox-counter {
+    position: absolute;
+    bottom: 15px;
+    color: white;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+    .lightbox-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+
+    .lightbox-nav.prev {
+        left: 10px;
+    }
+
+    .lightbox-nav.next {
+        right: 10px;
+    }
+
+    .image-lightbox img {
+        max-width: 85%;
+    }
+}
+/* NAVBAR ANIMATION */
+.site-header {
+    animation: slideDown 0.7s ease forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* NAVIGATION LINKS */
+.nav-links a {
+    position: relative;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* HOVER EFFECT */
+.nav-links a:hover {
+    color: #38bdf8;
+    transform: translateY(-4px);
+}
+
+/* ANIMATED UNDERLINE */
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -6px;
+    width: 0;
+    height: 2px;
+    background: #38bdf8;
+    box-shadow: 0 0 8px #38bdf8;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+    width: 100%;
+    left: 0;
+}
+
+/* ACTIVE PAGE */
+.nav-links a.active {
+    color: #38bdf8;
+}
+/* PORTFOLIO CARDS ANIMATION */
+
+.feature-card {
+    opacity: 0;
+    transform: translateY(35px);
+    animation: cardEntrance 0.8s ease forwards;
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+/* Staggered entrance */
+.feature-card:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.feature-card:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.feature-card:nth-child(3) {
+    animation-delay: 0.55s;
+}
+
+@keyframes cardEntrance {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* HOVER EFFECT */
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.18);
+    background: #1b2a3e;
+}
+
+/* CARD TITLE */
+.feature-card h2 {
+    transition: color 0.3s ease;
+}
+
+.feature-card:hover h2 {
+    color: #38bdf8;
+}
+
+/* EXPLORE LINK */
+.feature-card a {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.feature-card:hover a {
+    color: #38bdf8;
+    transform: translateX(8px);
+}
+
+/* QUICK LINKS CARD ANIMATION */
+
+.mini-card {
+    opacity: 0;
+    transform: translateY(35px);
+    animation: cardEntrance 0.8s ease forwards;
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+}
+
+/* Staggered entrance animation */
+.mini-card:nth-child(1) {
+    animation-delay: 0.15s;
+}
+
+.mini-card:nth-child(2) {
+    animation-delay: 0.35s;
+}
+
+.mini-card:nth-child(3) {
+    animation-delay: 0.55s;
+}
+
+/* Entrance keyframes */
+@keyframes cardEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(35px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover animation */
+.mini-card:hover {
+    transform: translateY(-10px);
+    border-color: #38bdf8;
+    box-shadow: 0 12px 30px rgba(56, 189, 248, 0.18);
+    background: #1b2a3e;
+}
+
+/* Card title animation */
+.mini-card h2 {
+    transition: color 0.3s ease;
+}
+
+.mini-card:hover h2 {
+    color: #38bdf8;
+}
+
+/* Explore link animation */
+.mini-card a {
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.mini-card:hover a {
+    color: #38bdf8;
+    transform: translateX(8px);
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .mini-card {
+        opacity: 1;
+        transform: none;
+        animation: none;
+        transition: none;
+    }
+}

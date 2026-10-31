@@ -64,4 +64,92 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-});
+    // WORKS IMAGE LIGHTBOX
+// WORKS IMAGE LIGHTBOX WITH NEXT AND PREVIOUS
+
+const lightbox = document.querySelector("#imageLightbox");
+const lightboxImage = document.querySelector("#lightboxImage");
+const closeButton = document.querySelector("#lightboxClose");
+const prevButton = document.querySelector("#prevImage");
+const nextButton = document.querySelector("#nextImage");
+const imageCounter = document.querySelector("#imageCounter");
+
+const galleryImages = Array.from(
+  document.querySelectorAll(".gallery-item img")
+);
+
+let currentImageIndex = 0;
+
+if (
+  lightbox &&
+  lightboxImage &&
+  closeButton &&
+  prevButton &&
+  nextButton &&
+  galleryImages.length
+) {
+
+  // Display selected image
+  function showImage(index) {
+    currentImageIndex =
+      (index + galleryImages.length) % galleryImages.length;
+
+    const selectedImage = galleryImages[currentImageIndex];
+
+    lightboxImage.style.opacity = "0";
+
+    setTimeout(() => {
+      lightboxImage.src = selectedImage.src;
+      lightboxImage.alt = selectedImage.alt;
+      lightboxImage.style.opacity = "1";
+    }, 150);
+
+    imageCounter.textContent =
+      `${currentImageIndex + 1} / ${galleryImages.length}`;
+  }
+
+  // Open image
+  galleryImages.forEach((image, index) => {
+    image.addEventListener("click", () => {
+      showImage(index);
+      lightbox.classList.add("active");
+      document.body.classList.add("lightbox-open");
+    });
+  });
+
+  // Next image
+  nextButton.addEventListener("click", () => {
+    showImage(currentImageIndex + 1);
+  });
+
+  // Previous image
+  prevButton.addEventListener("click", () => {
+    showImage(currentImageIndex - 1);
+  });
+
+  // Close lightbox
+  function closeLightbox() {
+    lightbox.classList.remove("active");
+    document.body.classList.remove("lightbox-open");
+  }
+
+  closeButton.addEventListener("click", closeLightbox);
+
+  // Close outside image
+  lightbox.addEventListener("click", (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  // Keyboard controls
+  document.addEventListener("keydown", (event) => {
+    if (!lightbox.classList.contains("active")) return;
+
+    if (event.key === "Escape") closeLightbox();
+    if (event.key === "ArrowRight") showImage(currentImageIndex + 1);
+    if (event.key === "ArrowLeft") showImage(currentImageIndex - 1);
+  });
+
+}
+})

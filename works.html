@@ -1,30 +1,145 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
-<link rel="icon" type="image/png" href="images/logo1.png">
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Works | Jhon Job Portfolio</title><link rel="stylesheet" href="styles.css"><script src="script.js" defer></script>
-</head>
-<body>
-  <header class="site-header"><a class="logo" href="index.html">Jhon <span>Job.</span></a><button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
-    <nav class="nav-links"><a href="index.html">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="account.html">Account</a><a href="profile.html">Profile</a><a class="active" href="works.html">Works</a><a href="experience.html">Experience</a></nav>
-  </header>
-  <main class="page-wrap page-content">
-    <p class="eyebrow">MY PROJECTS & CREATIONS</p><h1 class="page-title">My <span>Works</span></h1>
-    <p class="page-intro">A gallery to display my school projects, designs, diagrams, and other creations.</p>
-    <div class="works-toolbar"><label for="work-filter">Filter images</label><select id="work-filter"><option value="all">All works</option><option value="draw">Drawing</option><option value="logo">Logo</option><option value="design">Design</option></select></div>
-    <section class="works-grid image-gallery" id="works-grid">
-      <figure class="gallery-item" data-category="design"><img src="images/Bos.jpg" alt="Illustration for personal portfolio website"><figcaption>Bos Coffee Design</figcaption></figure>
-      <figure class="gallery-item" data-category="design"><img src="images/Brew.jpg" alt="Illustration for network diagram"><figcaption>Brew Haven Logo</figcaption></figure>
-      <figure class="gallery-item" data-category="logo"><img src="images/Speed.jpg" alt="Illustration for system integration project"><figcaption>Speed Shop logo 1</figcaption></figure>
-      <figure class="gallery-item" data-category="logo"><img src="images/Speed2.jpg" alt="Illustration for creative design"><figcaption>Speed Shop logo 2</figcaption></figure>
-      <figure class="gallery-item" data-category="logo"><img src="images/Speed3.jpg" alt="Illustration for coding project"><figcaption>Speed Shop logo 3</figcaption></figure>
-      <figure class="gallery-item" data-category="draw"><img src="images/apple.jpg" alt="Illustration for research presentation"><figcaption>Apple</figcaption></figure>
-      <figure class="gallery-item" data-category="draw"><img src="images/Coffee.jpg" alt="Illustration for research presentation"><figcaption>Apple</figcaption></figure>
-    </section>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  </main>
-  <footer class="site-footer"><p>© <span class="year"></span> Jhon Job Portfolio</p></footer>
+    <link rel="icon" type="image/png" href="images/logo1.png">
+
+    <title>My Works | Jhon Job Portfolio</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+
+    <header class="site-header">
+        <a class="logo" href="index.html">Jhon <span>Job.</span></a>
+
+        <button class="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">☰</button>
+
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="account.html">Account</a>
+            <a href="profile.html">Profile</a>
+            <a class="active" href="works.html">Works</a>
+            <a href="experience.html">Experience</a>
+        </nav>
+    </header>
+
+    <main class="page-wrap page-content">
+
+        <p class="eyebrow">MY PROJECTS & CREATIONS</p>
+
+        <h1 class="page-title">My <span>Works</span></h1>
+
+        <p class="page-intro">
+            A gallery to display my school projects, designs,
+            diagrams, and other creations.
+        </p>
+
+        <div class="works-toolbar">
+            <label for="work-filter">Filter images</label>
+
+            <select id="work-filter">
+                <option value="all">All works</option>
+                <option value="draw">Drawing</option>
+                <option value="logo">Logo</option>
+                <option value="design">Design</option>
+            </select>
+        </div>
+
+        <!-- WORKS GALLERY -->
+        <section class="works-grid image-gallery" id="works-grid">
+
+            <figure class="gallery-item" data-category="design">
+                <img src="images/Bos.jpg"
+                     alt="Bos Coffee Design">
+                <figcaption>Bos Coffee Design</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="design">
+                <img src="images/Brew.jpg"
+                     alt="Brew Haven Logo">
+                <figcaption>Brew Haven Logo</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="logo">
+                <img src="images/Speed.jpg"
+                     alt="Speed Shop Logo 1">
+                <figcaption>Speed Shop Logo 1</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="logo">
+                <img src="images/Speed2.jpg"
+                     alt="Speed Shop Logo 2">
+                <figcaption>Speed Shop Logo 2</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="logo">
+                <img src="images/Speed3.jpg"
+                     alt="Speed Shop Logo 3">
+                <figcaption>Speed Shop Logo 3</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="draw">
+                <img src="images/apple.jpg"
+                     alt="Apple Drawing">
+                <figcaption>Apple</figcaption>
+            </figure>
+
+            <figure class="gallery-item" data-category="draw">
+                <img src="images/Coffee.jpg"
+                     alt="Coffee Drawing">
+                <figcaption>Coffee Design</figcaption>
+            </figure>
+
+        </section>
+
+    </main>
+
+    <!-- FULL SCREEN IMAGE PREVIEW -->
+    <div class="image-lightbox" id="imageLightbox">
+
+        <button class="lightbox-close"
+                id="lightboxClose"
+                aria-label="Close image preview">
+            &times;
+        </button>
+
+        <!-- PREVIOUS BUTTON -->
+        <button class="lightbox-nav prev"
+                id="prevImage"
+                aria-label="Previous image">
+            &#10094;
+        </button>
+
+        <!-- LARGE IMAGE -->
+        <img src=""
+             alt="Project Preview"
+             id="lightboxImage">
+
+        <!-- NEXT BUTTON -->
+        <button class="lightbox-nav next"
+                id="nextImage"
+                aria-label="Next image">
+            &#10095;
+        </button>
+
+        <!-- IMAGE COUNTER -->
+        <p class="lightbox-counter" id="imageCounter"></p>
+
+    </div>
+
+    <footer class="site-footer">
+        <p>© <span class="year"></span> Jhon Job Portfolio</p>
+    </footer>
+
 </body>
 </html>
