@@ -152,4 +152,214 @@ if (
   });
 
 }
-})
+
+});
+// ========================================
+// GLOBAL PORTFOLIO SEARCH
+// ========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("siteSearch");
+    const searchResults = document.getElementById("searchResults");
+
+    if (!searchInput || !searchResults) return;
+
+    const portfolioPages = [
+        {
+            name: "Home",
+            url: "index.html",
+            keywords: "home welcome portfolio jhon job"
+        },
+        {
+            name: "About Me",
+            url: "about.html",
+            keywords: "about myself introduction personal information"
+        },
+        {
+            name: "Education",
+            url: "education.html",
+            keywords: "education elementary junior high senior high college nc ii"
+        },
+        {
+            name: "Contact",
+            url: "contact.html",
+            keywords: "contact email telegram message"
+        },
+        {
+            name: "Account",
+            url: "account.html",
+            keywords: "account login register"
+        },
+        {
+            name: "Profile",
+            url: "profile.html",
+            keywords: "profile skills hobbies interests html css javascript c programming networking"
+        },
+        {
+            name: "Works",
+            url: "works.html",
+            keywords: "works projects web design game development activities"
+        },
+        {
+            name: "Experience",
+            url: "experience.html",
+            keywords: "experience projects activities achievements"
+        }
+    ];
+
+    searchInput.addEventListener("input", function () {
+
+        const query = this.value.toLowerCase().trim();
+
+        searchResults.innerHTML = "";
+
+        if (query === "") {
+            searchResults.style.display = "none";
+            return;
+        }
+
+        const matches = portfolioPages.filter(page => {
+            const searchableText =
+                (page.name + " " + page.keywords).toLowerCase();
+
+            return searchableText.includes(query);
+        });
+
+        searchResults.style.display = "block";
+
+        if (matches.length === 0) {
+            searchResults.innerHTML = "<p>No results found.</p>";
+            return;
+        }
+
+        matches.forEach(page => {
+
+            const link = document.createElement("a");
+
+            link.href = page.url;
+            link.textContent = "🔍 " + page.name;
+
+            searchResults.appendChild(link);
+
+        });
+
+    });
+
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest(".global-search")) {
+            searchResults.style.display = "none";
+        }
+    });
+
+});
+// ========================================
+// WORKS GALLERY LIGHTBOX WITH DESCRIPTION
+// ========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const galleryImages = document.querySelectorAll(
+        ".gallery-item img"
+    );
+
+    const lightbox = document.getElementById("imageLightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
+    const lightboxTitle = document.getElementById("lightboxTitle");
+    const lightboxDescription = document.getElementById("lightboxDescription");
+    const imageCounter = document.getElementById("imageCounter");
+
+    const closeButton = document.getElementById("lightboxClose");
+    const prevButton = document.getElementById("prevImage");
+    const nextButton = document.getElementById("nextImage");
+
+    if (
+        !lightbox ||
+        !lightboxImage ||
+        !lightboxTitle ||
+        !lightboxDescription ||
+        !closeButton ||
+        !prevButton ||
+        !nextButton
+    ) return;
+
+    let currentImageIndex = 0;
+
+    function showImage(index) {
+
+        currentImageIndex =
+            (index + galleryImages.length) % galleryImages.length;
+
+        const selectedImage = galleryImages[currentImageIndex];
+
+        lightboxImage.src = selectedImage.src;
+        lightboxImage.alt = selectedImage.alt;
+
+        lightboxTitle.textContent =
+            selectedImage.dataset.title || selectedImage.alt;
+
+        lightboxDescription.textContent =
+            selectedImage.dataset.description ||
+            "No description available.";
+
+        imageCounter.textContent =
+            `${currentImageIndex + 1} / ${galleryImages.length}`;
+
+    }
+
+    // Open image
+    galleryImages.forEach((image, index) => {
+
+        image.addEventListener("click", function () {
+
+            lightbox.style.display = "flex";
+            showImage(index);
+
+        });
+
+    });
+
+    // Previous image
+    prevButton.addEventListener("click", function () {
+        showImage(currentImageIndex - 1);
+    });
+
+    // Next image
+    nextButton.addEventListener("click", function () {
+        showImage(currentImageIndex + 1);
+    });
+
+    // Close lightbox
+    function closeLightbox() {
+        lightbox.style.display = "none";
+    }
+
+    closeButton.addEventListener("click", closeLightbox);
+
+    // Close when clicking outside the image and description
+    lightbox.addEventListener("click", function (event) {
+        if (event.target === lightbox) {
+            closeLightbox();
+        }
+    });
+
+    // Keyboard navigation
+    document.addEventListener("keydown", function (event) {
+
+        if (lightbox.style.display !== "flex") return;
+
+        if (event.key === "Escape") {
+            closeLightbox();
+        }
+
+        if (event.key === "ArrowRight") {
+            showImage(currentImageIndex + 1);
+        }
+
+        if (event.key === "ArrowLeft") {
+            showImage(currentImageIndex - 1);
+        }
+
+    });
+
+});
